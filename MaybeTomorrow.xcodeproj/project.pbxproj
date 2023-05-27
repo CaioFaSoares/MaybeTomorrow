@@ -23,6 +23,7 @@
 		D63FFBA32A21B2C000B3DEA7 /* TaskButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FFBA22A21B2C000B3DEA7 /* TaskButtonStyle.swift */; };
 		D63FFBA52A21B43E00B3DEA7 /* AddTaskSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FFBA42A21B43E00B3DEA7 /* AddTaskSheetViewModel.swift */; };
 		D63FFBA82A21B62B00B3DEA7 /* TaskLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FFBA72A21B62B00B3DEA7 /* TaskLevel.swift */; };
+		D63FFBAB2A22842E00B3DEA7 /* TaskPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FFBAA2A22842E00B3DEA7 /* TaskPublisher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		D63FFBA22A21B2C000B3DEA7 /* TaskButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskButtonStyle.swift; sourceTree = "<group>"; };
 		D63FFBA42A21B43E00B3DEA7 /* AddTaskSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskSheetViewModel.swift; sourceTree = "<group>"; };
 		D63FFBA72A21B62B00B3DEA7 /* TaskLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskLevel.swift; sourceTree = "<group>"; };
+		D63FFBAA2A22842E00B3DEA7 /* TaskPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPublisher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 		D63FFB932A21AE2300B3DEA7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D63FFBA92A22841100B3DEA7 /* Services */,
 				D63FFB9A2A21B0FB00B3DEA7 /* Data */,
 				D63FFB942A21AE3F00B3DEA7 /* Scenes */,
 			);
@@ -218,6 +221,14 @@
 				D63FFBA72A21B62B00B3DEA7 /* TaskLevel.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		D63FFBA92A22841100B3DEA7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D63FFBAA2A22842E00B3DEA7 /* TaskPublisher.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +364,7 @@
 				D63FFBA32A21B2C000B3DEA7 /* TaskButtonStyle.swift in Sources */,
 				D63FFB9D2A21B11300B3DEA7 /* Tasks.swift in Sources */,
 				D63FFB6D2A21ABE200B3DEA7 /* Persistence.swift in Sources */,
+				D63FFBAB2A22842E00B3DEA7 /* TaskPublisher.swift in Sources */,
 				D63FFBA02A21B29400B3DEA7 /* AddTaskSheet.swift in Sources */,
 				D63FFBA82A21B62B00B3DEA7 /* TaskLevel.swift in Sources */,
 				D63FFB702A21ABE200B3DEA7 /* MaybeTomorrow.xcdatamodeld in Sources */,

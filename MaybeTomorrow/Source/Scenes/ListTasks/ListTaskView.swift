@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct ListTaskView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -23,7 +24,7 @@ struct ListTaskView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(tasks) { task in
+                ForEach() { task in
                     NavigationLink {
                         
                     } label: {
