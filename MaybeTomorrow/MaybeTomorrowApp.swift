@@ -13,7 +13,7 @@ struct MaybeTomorrowApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ListTaskView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
