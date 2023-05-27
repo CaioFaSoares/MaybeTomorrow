@@ -32,24 +32,7 @@ class AddTaskSheetViewModel: ObservableObject {
         newItem.name = draftTask.taskName
         newItem.level = Int16(draftTask.taskLevel.rawValue)
         
-        saveContext()
-    }
-    
-    func saveContext() {
-        if managedObjectContext.hasChanges {
-            do {
-                print("Saving data")
-                try managedObjectContext.save()
-            } catch {
-                /* This is straight out of Apple's default implementation. As such Apple advises to replace
-                 this implementation with code to handle the error appropriately.
-                 In particular fatalError() will causes the application to generate a crash log and terminate.
-                 And as such, you are advised not use this function in a shipping application, although it may be useful during development.
-                 */
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
+        PersistenceController.shared.saveContext()
     }
 
     private var cancellableSet: Set<AnyCancellable> = []
