@@ -19,7 +19,7 @@ class CDPublisher<CoreTask>: NSObject, NSFetchedResultsControllerDelegate, Publi
     private var resultController: NSFetchedResultsController<NSManagedObject>?
     private var subscriptions = 0
 
-      init(request: NSFetchRequest<CoreTask>, context: NSManagedObjectContext) {
+    init(request: NSFetchRequest<CoreTask>, context: NSManagedObjectContext) {
         if request.sortDescriptors == nil { request.sortDescriptors = [] }
         self.request = request
         self.context = context
@@ -27,14 +27,14 @@ class CDPublisher<CoreTask>: NSObject, NSFetchedResultsControllerDelegate, Publi
         super.init()
     }
 
-      func receive<S>(subscriber: S)
+    func receive<S>(subscriber: S)
         where S: Subscriber, CDPublisher.Failure == S.Failure, CDPublisher.Output == S.Input {
         var start = false
             
-        DispatchQueue.main.sync {
-            subscriptions += 1
-            start = subscriptions == 1
-        }
+        objc_sync_enter(self)
+        subscriptions += 1
+        start = subscriptions == 1
+        objc_sync_exit(self)
 
         if start {
             let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context,
@@ -53,12 +53,12 @@ class CDPublisher<CoreTask>: NSObject, NSFetchedResultsControllerDelegate, Publi
         CDSubscription(fetchPublisher: self, subscriber: AnySubscriber(subscriber))
     }
 
-      func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         let result = controller.fetchedObjects as? [CoreTask] ?? []
         subject.send(result)
     }
 
-      private func dropSubscription() {
+    private func dropSubscription() {
         objc_sync_enter(self)
         subscriptions -= 1
         let stop = subscriptions == 0
@@ -96,5 +96,4 @@ class CDPublisher<CoreTask>: NSObject, NSFetchedResultsControllerDelegate, Publi
             fetchPublisher = nil
         }
     }
-
 }

@@ -10,25 +10,16 @@ import SwiftUI
 
 struct ListTaskView: View {
     
-    @Environment(\.managedObjectContext) private var viewContext
-    
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(
-            keyPath: \CoreTask.timestamp,
-            ascending: true)],
-        animation: .default)
-    var tasks: FetchedResults<CoreTask>
-    
-    @ObservedObject var viewModel = listTaskViewModel.shared
+    @EnvironmentObject var viewModel: listTaskViewModel
     
     var body: some View {
         NavigationView {
             List {
-                ForEach() { task in
+                ForEach(viewModel.allTasks) { task in
                     NavigationLink {
                         
                     } label: {
-                        Text("\(task.name!) | \(task.level)")
+                        Text("\(task.name ?? "") | \(task.timestamp ?? Date.now)")
                     }
                 }
                 .onDelete(perform: viewModel.deleteItems)
@@ -49,6 +40,9 @@ struct ListTaskView: View {
         }
         .sheet(isPresented: $viewModel.showingSheet) {
             AddTaskSheet()
+                .onDisappear() {
+                    viewModel.reloadData()
+                }
         }
     }
 }

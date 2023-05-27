@@ -24,6 +24,7 @@
 		D63FFBA52A21B43E00B3DEA7 /* AddTaskSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FFBA42A21B43E00B3DEA7 /* AddTaskSheetViewModel.swift */; };
 		D63FFBA82A21B62B00B3DEA7 /* TaskLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FFBA72A21B62B00B3DEA7 /* TaskLevel.swift */; };
 		D63FFBAB2A22842E00B3DEA7 /* TaskPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FFBAA2A22842E00B3DEA7 /* TaskPublisher.swift */; };
+		D63FFBAD2A22BFB000B3DEA7 /* TaskPublisherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FFBAC2A22BFB000B3DEA7 /* TaskPublisherProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		D63FFBA42A21B43E00B3DEA7 /* AddTaskSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskSheetViewModel.swift; sourceTree = "<group>"; };
 		D63FFBA72A21B62B00B3DEA7 /* TaskLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskLevel.swift; sourceTree = "<group>"; };
 		D63FFBAA2A22842E00B3DEA7 /* TaskPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPublisher.swift; sourceTree = "<group>"; };
+		D63FFBAC2A22BFB000B3DEA7 /* TaskPublisherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPublisherProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				D63FFBAA2A22842E00B3DEA7 /* TaskPublisher.swift */,
+				D63FFBAC2A22BFB000B3DEA7 /* TaskPublisherProtocol.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				D63FFBA02A21B29400B3DEA7 /* AddTaskSheet.swift in Sources */,
 				D63FFBA82A21B62B00B3DEA7 /* TaskLevel.swift in Sources */,
 				D63FFB702A21ABE200B3DEA7 /* MaybeTomorrow.xcdatamodeld in Sources */,
+				D63FFBAD2A22BFB000B3DEA7 /* TaskPublisherProtocol.swift in Sources */,
 				D63FFB972A21AE7900B3DEA7 /* ListTaskView.swift in Sources */,
 				D63FFBA52A21B43E00B3DEA7 /* AddTaskSheetViewModel.swift in Sources */,
 				D63FFB992A21AEB100B3DEA7 /* ListTaskViewModel.swift in Sources */,

@@ -16,7 +16,7 @@ class listTaskViewModel: ObservableObject {
     // MARK: - Functionality
     
     @Published var showingSheet = false
-    @Published var allTasks = [Task]()
+    @Published var allTasks = [CoreTask]()
     
     func raiseSheet() {
         showingSheet.toggle()
@@ -36,9 +36,9 @@ class listTaskViewModel: ObservableObject {
 
     func deleteItems(offsets: IndexSet) {
         withAnimation {
-//            offsets.map { allTasks[$0] }.forEach(managedObjectContext.delete)
+            offsets.map { allTasks[$0] }.forEach(managedObjectContext.delete)
             
-            _ = offsets.map { task in managedObjectContext.delete }
+//            _ = allTasks.map { task in managedObjectContext.delete }
             saveContext()
         }
     }
@@ -65,7 +65,7 @@ class listTaskViewModel: ObservableObject {
     let persistentContainer: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        persistentContainer = NSPersistentContainer(name: "AppCoreData")
+        persistentContainer = NSPersistentContainer(name: "MaybeTomorrow")
         if inMemory {
             persistentContainer.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -88,7 +88,7 @@ class listTaskViewModel: ObservableObject {
 
         print("Setting up Core Data update subscriptions  ")
         
-        CDPublisher(request: CoreTask.fetchRequest(), context: persistentContainer.viewContext)
+        CDPublisher(request: CoreTask.fetchAllTasks(), context: managedObjectContext)
             .sink(
                 receiveCompletion: {
                     print("Completion from fetchItemsAll")
@@ -99,6 +99,21 @@ class listTaskViewModel: ObservableObject {
                 })
             .store(in: &cancellableSet)
         
+    }
+    
+    // MARK: - Reload data in view
+    
+    func reloadData() {
+        CDPublisher(request: CoreTask.fetchAllTasks(), context: managedObjectContext)
+            .sink(
+                receiveCompletion: {
+                    print("Reloaded data")
+                    print($0)
+                },
+                receiveValue: { [weak self] tasks in
+                    self?.allTasks = tasks
+                })
+            .store(in: &cancellableSet)
     }
     
 }
