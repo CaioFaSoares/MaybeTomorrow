@@ -12,6 +12,9 @@ struct ListTaskView: View {
     
     @EnvironmentObject var viewModel: listTaskViewModel
     
+    @State private var showSheet = false
+    @State private var sheetHeight: CGFloat = .zero
+    
     var body: some View {
         NavigationView {
             List {
@@ -36,16 +39,31 @@ struct ListTaskView: View {
                     }
                 }
             }
-            Text("Select an item")
         }
         .sheet(isPresented: $viewModel.showingSheet) {
-            AddTaskSheet()
+            AddTaskSheet(taskCount: viewModel.allTasks.count)
                 .onDisappear() {
                     withAnimation {
                         viewModel.reloadData()
                     }
                 }
+                .overlay {
+                    GeometryReader { geometry in
+                        Color.clear.preference(key: InnerHeightPreferenceKey.self, value: geometry.size.height)
+                    }
+                }
+                .onPreferenceChange(InnerHeightPreferenceKey.self) { newHeight in
+                    sheetHeight = newHeight
+                }
+                .presentationDetents([.height(sheetHeight)])
         }
+    }
+}
+
+struct InnerHeightPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = .zero
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
     }
 }
 

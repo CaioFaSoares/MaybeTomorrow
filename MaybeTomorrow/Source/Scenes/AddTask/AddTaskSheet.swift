@@ -9,13 +9,17 @@ import SwiftUI
 
 struct AddTaskSheet: View {
     
+    internal init(taskCount: Int) {
+        self.viewModel = AddTaskSheetViewModel(taskCount: taskCount)
+    }
+    
     @Environment(\.dismiss) var dismiss
-    @StateObject private var viewModel = AddTaskSheetViewModel()
+    @ObservedObject private var viewModel: AddTaskSheetViewModel
     
     var body: some View {
         VStack {
             HStack {
-                Text("Adding New Task!")
+                Text("Adding Task #\(viewModel.taskCount)!")
                     .padding(.all)
                     .frame(alignment: .leading)
                     .font(.largeTitle)
@@ -25,31 +29,31 @@ struct AddTaskSheet: View {
             TextField("Task Name", text: $viewModel.draftTask.taskName)
                 .textFieldStyle(.roundedBorder)
                 .padding(.all)
+            DatePicker("Due date", selection: $viewModel.draftTask.taskDueData, displayedComponents: .date)
+                .datePickerStyle(.compact)
+//                .padding(.all)
+                .scaledToFit()
             HStack {
-                ForEach(taskImportanceLevels.allCases, id: \.id) { level in
+                ForEach(taskImportanceLevels.allCases.filter({ $0.rawValue != -1 }), id: \.id) { level in
                     Button(action: {
                         viewModel.draftTask.taskLevel = level
                     }, label: {
-                        Text(LocalizedStringKey(stringLiteral: "\(level)"))
-                            .foregroundColor(Color.black)
+                        Text(LocalizedStringKey(stringLiteral: "\(level.emoji)"))
+                            .shadow(radius: CGFloat(level.color == viewModel.draftTask.taskLevel.color ? 0 : 100))
+//                            .foregroundColor(Color.black)
                     })
-                    .buttonStyle(taskButtonStyle(levelColor: level.color,selectedLevel: viewModel.draftTask.taskLevel))
+//                    .padding(.all)
+                    .buttonStyle(taskButtonStyle(level: level,
+                                                 selectedLevel: viewModel.draftTask.taskLevel))
                 }
             }
             .padding(.all)
-            DatePicker("Due date", selection: $viewModel.draftTask.taskDueData, displayedComponents: .date)
-                .datePickerStyle(.compact)
-                .padding(.all)
-                .scaledToFit()
+//            .scaledToFit()
             switch viewModel.draftTask.taskLevel {
-            case .Simple:
-                Text("We'll start bothering you 2 days before that.")
-            case .Medium:
-                Text("We'll start bothering you 5 days before that.")
-            case .Hard:
-                Text("We'll start bothering you 7 days before that.")
-            case .Complex:
-                Text("We'll start bothering you 10 days before that.")
+            case .Unselected:
+                Text("When should we start bothering you?")
+            default:
+                Text("We'll start bothering you \(viewModel.draftTask.taskLevel.days) days before that.")
             }
             Button {
                 viewModel.submitTask()
@@ -62,12 +66,12 @@ struct AddTaskSheet: View {
             .buttonStyle(.bordered)
 
         }
-        .padding(.all)
+//        .padding(.all)
     }
 }
 
 struct AddTaskSheet_Previews: PreviewProvider {
     static var previews: some View {
-        AddTaskSheet()
+        AddTaskSheet(taskCount: 0)
     }
 }

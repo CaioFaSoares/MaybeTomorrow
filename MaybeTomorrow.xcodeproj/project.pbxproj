@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D63FFB642A21ABE100B3DEA7 /* MaybeTomorrowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FFB632A21ABE100B3DEA7 /* MaybeTomorrowApp.swift */; };
-		D63FFB662A21ABE100B3DEA7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FFB652A21ABE100B3DEA7 /* ContentView.swift */; };
 		D63FFB682A21ABE200B3DEA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D63FFB672A21ABE200B3DEA7 /* Assets.xcassets */; };
 		D63FFB6B2A21ABE200B3DEA7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D63FFB6A2A21ABE200B3DEA7 /* Preview Assets.xcassets */; };
 		D63FFB6D2A21ABE200B3DEA7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FFB6C2A21ABE200B3DEA7 /* Persistence.swift */; };
@@ -47,7 +46,6 @@
 /* Begin PBXFileReference section */
 		D63FFB602A21ABE100B3DEA7 /* MaybeTomorrow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaybeTomorrow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63FFB632A21ABE100B3DEA7 /* MaybeTomorrowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaybeTomorrowApp.swift; sourceTree = "<group>"; };
-		D63FFB652A21ABE100B3DEA7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D63FFB672A21ABE200B3DEA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D63FFB6A2A21ABE200B3DEA7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D63FFB6C2A21ABE200B3DEA7 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				D63FFB632A21ABE100B3DEA7 /* MaybeTomorrowApp.swift */,
-				D63FFB652A21ABE100B3DEA7 /* ContentView.swift */,
 				D63FFB6C2A21ABE200B3DEA7 /* Persistence.swift */,
 				D63FFB932A21AE2300B3DEA7 /* Source */,
 				D63FFB672A21ABE200B3DEA7 /* Assets.xcassets */,
@@ -167,7 +164,7 @@
 		D63FFB942A21AE3F00B3DEA7 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				D63FFBA12A21B2B300B3DEA7 /* Styles */,
+				D63FFBA12A21B2B300B3DEA7 /* Components and Styles */,
 				D63FFB952A21AE4400B3DEA7 /* ListTasks */,
 				D63FFB9E2A21B24300B3DEA7 /* AddTask */,
 			);
@@ -209,12 +206,12 @@
 			path = AddTask;
 			sourceTree = "<group>";
 		};
-		D63FFBA12A21B2B300B3DEA7 /* Styles */ = {
+		D63FFBA12A21B2B300B3DEA7 /* Components and Styles */ = {
 			isa = PBXGroup;
 			children = (
 				D63FFBA22A21B2C000B3DEA7 /* TaskButtonStyle.swift */,
 			);
-			path = Styles;
+			path = "Components and Styles";
 			sourceTree = "<group>";
 		};
 		D63FFBA62A21B61100B3DEA7 /* Enums */ = {
@@ -375,7 +372,6 @@
 				D63FFB972A21AE7900B3DEA7 /* ListTaskView.swift in Sources */,
 				D63FFBA52A21B43E00B3DEA7 /* AddTaskSheetViewModel.swift in Sources */,
 				D63FFB992A21AEB100B3DEA7 /* ListTaskViewModel.swift in Sources */,
-				D63FFB662A21ABE100B3DEA7 /* ContentView.swift in Sources */,
 				D63FFB642A21ABE100B3DEA7 /* MaybeTomorrowApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

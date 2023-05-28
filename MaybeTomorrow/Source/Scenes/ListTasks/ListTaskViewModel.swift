@@ -19,6 +19,8 @@ class listTaskViewModel: ObservableObject {
     
     // MARK: - Functionality
     
+    private var cancellableSet: Set<AnyCancellable> = []
+    
     @Published var showingSheet = false
     @Published var allTasks = [CoreTask]()
     
@@ -38,10 +40,8 @@ class listTaskViewModel: ObservableObject {
         offsets.map { allTasks[$0] }.forEach(managedObjectContext.delete)
         PersistenceController.shared.saveContext()
     }
-
-    private var cancellableSet: Set<AnyCancellable> = []
     
-    // MARK: - Reload data in view
+    // MARK: - Load and reload data in view
     
     func reloadData() {
         CDPublisher(request: CoreTask.fetchAllTasks(), context: managedObjectContext)
