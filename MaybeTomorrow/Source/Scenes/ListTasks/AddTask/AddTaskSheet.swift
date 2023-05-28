@@ -29,9 +29,9 @@ struct AddTaskSheet: View {
             TextField("Task Name", text: $viewModel.draftTask.taskName)
                 .textFieldStyle(.roundedBorder)
                 .padding(.all)
-            DatePicker("Due date", selection: $viewModel.draftTask.taskDueData, displayedComponents: .date)
+            DatePicker("Due date", selection: $viewModel.draftTask.taskDueData, in: Date.now...Date.distantFuture, displayedComponents: .date)
                 .datePickerStyle(.compact)
-//                .padding(.all)
+                .padding(.horizontal)
                 .scaledToFit()
             HStack {
                 ForEach(taskImportanceLevels.allCases.filter({ $0.rawValue != -1 }), id: \.id) { level in

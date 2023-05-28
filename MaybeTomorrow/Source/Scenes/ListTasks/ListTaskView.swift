@@ -16,30 +16,28 @@ struct ListTaskView: View {
     @State private var sheetHeight: CGFloat = .zero
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(viewModel.allTasks) { task in
-                    NavigationLink {
-                        
-                    } label: {
-                        Text("\(task.name ?? "") | \(task.timestamp ?? Date.now)")
-                    }
+        List {
+            ForEach(viewModel.allTasks) { task in
+                NavigationLink {
+                    
+                } label: {
+                    Text("\(task.name ?? "") | \(task.timestamp ?? Date.now)")
                 }
-                .onDelete(perform: viewModel.deleteItems)
             }
-            .navigationBarTitleDisplayMode(.large)
-            .navigationTitle("Tasks")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: viewModel.raiseSheet) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+            .onDelete(perform: viewModel.deleteItems)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
+            }
+            ToolbarItem {
+                Button(action: viewModel.raiseSheet) {
+                    Label("Add Item", systemImage: "plus")
                 }
             }
         }
+        .navigationBarTitleDisplayMode(.large)
+        .navigationTitle("Tasks")
         .sheet(isPresented: $viewModel.showingSheet) {
             AddTaskSheet(taskCount: viewModel.allTasks.count)
                 .onDisappear() {

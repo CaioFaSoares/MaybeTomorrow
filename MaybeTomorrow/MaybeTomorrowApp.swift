@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct MaybeTomorrowApp: App {
     
-//    let persistenceController = PersistenceController.shared
+    //    let persistenceController = PersistenceController.shared
     
     @StateObject private var model: listTaskViewModel
     
@@ -21,12 +21,27 @@ struct MaybeTomorrowApp: App {
     init() {
         _model = StateObject(wrappedValue: listTaskViewModel())
     }
-
+    
     var body: some Scene {
         WindowGroup {
-            ListTaskView()
-                .environment(\.managedObjectContext, model.managedObjectContext)
-                .environmentObject(model)
+            TabView {
+                NavigationStack {
+                    HomeView()
+//                        .environment(\.managedObjectContext, model.managedObjectContext)
+//                        .environmentObject(model)
+                }.tabItem {
+                    Image(systemName: "book.closed.fill")
+                    Text("Home")
+                }
+                NavigationStack {
+                    ListTaskView()
+                        .environment(\.managedObjectContext, model.managedObjectContext)
+                        .environmentObject(model)
+                }.tabItem {
+                    Image(systemName: "books.vertical")
+                    Text("List")
+                }
+            }
         }
     }
 }
