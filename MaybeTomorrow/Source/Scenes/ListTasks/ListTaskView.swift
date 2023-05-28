@@ -23,8 +23,20 @@ struct ListTaskView: View {
                 } label: {
                     Text("\(task.name ?? "") | \(task.timestamp ?? Date.now)")
                 }
+                .swipeActions(edge: .trailing,
+                              allowsFullSwipe: true
+                ) {
+                    Button (role: .destructive) {
+                        withAnimation {
+                            viewModel.deleteFromID(taskId: task.internalid!)
+                        }
+                    } label: {
+                        Text("")
+                    }
+
+                }
             }
-            .onDelete(perform: viewModel.deleteItems)
+//            .onDelete(perform: viewModel.deleteItems)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

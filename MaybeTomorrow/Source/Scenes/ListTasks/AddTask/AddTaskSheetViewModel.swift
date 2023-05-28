@@ -43,6 +43,9 @@ class AddTaskSheetViewModel: ObservableObject {
         newItem.timestamp = draftTask.taskDueData
         newItem.name = draftTask.taskName
         newItem.level = Int16(draftTask.taskLevel.rawValue)
+        newItem.internalid = UUID()
+        newItem.isDone = false
+        newItem.isArchived = false
         
         PersistenceController.shared.saveContext()
     }

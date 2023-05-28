@@ -35,9 +35,13 @@ class listTaskViewModel: ObservableObject {
     }
     
     // MARK: - Core Data state mutations.
-
+    
     func deleteItems(offsets: IndexSet) {
         offsets.map { allTasks[$0] }.forEach(managedObjectContext.delete)
+    }
+    
+    func deleteFromID(taskId: UUID) {
+        allTasks.filter { $0.internalid == taskId}.forEach(managedObjectContext.delete)
         PersistenceController.shared.saveContext()
     }
     

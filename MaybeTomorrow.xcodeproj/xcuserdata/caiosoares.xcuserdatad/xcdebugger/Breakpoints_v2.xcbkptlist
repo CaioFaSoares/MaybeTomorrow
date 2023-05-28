@@ -110,10 +110,10 @@
             filePath = "MaybeTomorrow/Source/Data/Models/Tasks.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "fetchAllTasks()"
-            landmarkType = "7">
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "CoreTask"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -126,9 +126,9 @@
             filePath = "MaybeTomorrow/Source/Data/Models/Tasks.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "fetchAllTasks()"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "archive()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -142,10 +142,88 @@
             filePath = "MaybeTomorrow/Source/Data/Models/Tasks.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "fetchAllTasks()"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "done()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C60E2B6A-4511-40FD-9636-8B68A5D34B6D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MaybeTomorrow/Source/Scenes/ListTasks/ListTaskView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "C60E2B6A-4511-40FD-9636-8B68A5D34B6D - 8173dd5a8b306878"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;MaybeTomorrow.CoreTask&gt;, Swift.ObjectIdentifier, &lt;&lt;opaque return type of SwiftUI.View.swipeActions&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(edge: SwiftUI.HorizontalEdge, allowsFullSwipe: Swift.Bool, content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt; in MaybeTomorrow.ListTaskView.body.getter : some"
+                  moduleName = "MaybeTomorrow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caiosoares/_Caligula/Projects/Time&apos;s%20Up/MaybeTomorrow/MaybeTomorrow/Source/Scenes/ListTasks/ListTaskView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "C60E2B6A-4511-40FD-9636-8B68A5D34B6D - c72a79e2cbcf4f92"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (MaybeTomorrow.CoreTask) -&gt; &lt;&lt;opaque return type of SwiftUI.View.swipeActions&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(edge: SwiftUI.HorizontalEdge, allowsFullSwipe: Swift.Bool, content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;MaybeTomorrow.CoreTask&gt;, Swift.ObjectIdentifier, &lt;&lt;opaque return type of SwiftUI.View.swipeActions&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(edge: SwiftUI.HorizontalEdge, allowsFullSwipe: Swift.Bool, content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt; in MaybeTomorrow.ListTaskView.body.getter : some"
+                  moduleName = "MaybeTomorrow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caiosoares/_Caligula/Projects/Time&apos;s%20Up/MaybeTomorrow/MaybeTomorrow/Source/Scenes/ListTasks/ListTaskView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "440">
+               </Location>
+               <Location
+                  uuid = "C60E2B6A-4511-40FD-9636-8B68A5D34B6D - 8173dd5a8b306878"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;MaybeTomorrow.CoreTask&gt;, Swift.ObjectIdentifier, &lt;&lt;opaque return type of SwiftUI.View.swipeActions&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(edge: SwiftUI.HorizontalEdge, allowsFullSwipe: Swift.Bool, content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt; in MaybeTomorrow.ListTaskView.body.getter : some"
+                  moduleName = "MaybeTomorrow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caiosoares/_Caligula/Projects/Time&apos;s%20Up/MaybeTomorrow/MaybeTomorrow/Source/Scenes/ListTasks/ListTaskView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  uuid = "C60E2B6A-4511-40FD-9636-8B68A5D34B6D - c72a79e2cbcf4f92"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (MaybeTomorrow.CoreTask) -&gt; &lt;&lt;opaque return type of SwiftUI.View.swipeActions&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(edge: SwiftUI.HorizontalEdge, allowsFullSwipe: Swift.Bool, content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;MaybeTomorrow.CoreTask&gt;, Swift.ObjectIdentifier, &lt;&lt;opaque return type of SwiftUI.View.swipeActions&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(edge: SwiftUI.HorizontalEdge, allowsFullSwipe: Swift.Bool, content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt; in MaybeTomorrow.ListTaskView.body.getter : some"
+                  moduleName = "MaybeTomorrow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caiosoares/_Caligula/Projects/Time&apos;s%20Up/MaybeTomorrow/MaybeTomorrow/Source/Scenes/ListTasks/ListTaskView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "204">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

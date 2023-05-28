@@ -39,4 +39,12 @@ extension CoreTask {
         return request
     }
     
+    func archive() {
+        self.isArchived = true
+    }
+    
+    func done() {
+        self.isDone = true
+    }
+    
 }
