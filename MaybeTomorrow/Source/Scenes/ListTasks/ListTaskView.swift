@@ -41,7 +41,7 @@ struct ListTaskView: View {
             }
         }
         .sheet(isPresented: $viewModel.showingSheet) {
-            AddTaskSheet()
+            AddTaskSheet(taskCount: viewModel.allTasks.count)
                 .onDisappear() {
                     withAnimation {
                         viewModel.reloadData()

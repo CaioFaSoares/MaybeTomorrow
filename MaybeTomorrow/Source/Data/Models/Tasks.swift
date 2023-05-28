@@ -22,6 +22,11 @@ struct DraftTask: Identifiable {
         self.taskDueData = timestamp
         self.taskLevel = taskImportanceLevels(rawValue: Int(level))!
     }
+    
+    // TODO: - Maybe implement a version of the submit task but with a quicker way to do it?
+//    init(name: String, timestamp: Date, level: Int16) {
+//        
+//    }
 }
 
 extension CoreTask {
