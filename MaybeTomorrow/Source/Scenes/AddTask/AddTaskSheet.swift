@@ -25,22 +25,24 @@ struct AddTaskSheet: View {
             TextField("Task Name", text: $viewModel.draftTask.taskName)
                 .textFieldStyle(.roundedBorder)
                 .padding(.all)
+            DatePicker("Due date", selection: $viewModel.draftTask.taskDueData, displayedComponents: .date)
+                .datePickerStyle(.compact)
+//                .padding(.all)
+                .scaledToFit()
             HStack {
-                ForEach(taskImportanceLevels.allCases, id: \.id) { level in
+                ForEach(taskImportanceLevels.allCases.filter({ $0.rawValue != -1 }), id: \.id) { level in
                     Button(action: {
                         viewModel.draftTask.taskLevel = level
                     }, label: {
                         Text(LocalizedStringKey(stringLiteral: "\(level)"))
                             .foregroundColor(Color.black)
                     })
+//                    .padding(.all)
                     .buttonStyle(taskButtonStyle(levelColor: level.color,selectedLevel: viewModel.draftTask.taskLevel))
                 }
             }
             .padding(.all)
-            DatePicker("Due date", selection: $viewModel.draftTask.taskDueData, displayedComponents: .date)
-                .datePickerStyle(.compact)
-                .padding(.all)
-                .scaledToFit()
+//            .scaledToFit()
             switch viewModel.draftTask.taskLevel {
             case .Simple:
                 Text("We'll start bothering you 2 days before that.")
@@ -50,6 +52,8 @@ struct AddTaskSheet: View {
                 Text("We'll start bothering you 7 days before that.")
             case .Complex:
                 Text("We'll start bothering you 10 days before that.")
+            default:
+                Text("When should we start bothering you?")
             }
             Button {
                 viewModel.submitTask()
@@ -62,7 +66,7 @@ struct AddTaskSheet: View {
             .buttonStyle(.bordered)
 
         }
-        .padding(.all)
+//        .padding(.all)
     }
 }
 

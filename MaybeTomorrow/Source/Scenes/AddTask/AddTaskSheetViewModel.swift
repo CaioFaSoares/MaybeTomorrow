@@ -11,12 +11,14 @@ import Combine
 
 class AddTaskSheetViewModel: ObservableObject {
     
-    // MARK: - Initing the draft task
+    // MARK: - Functionality
+    
+    private var cancellableSet: Set<AnyCancellable> = []
     
     @Published var draftTask = DraftTask(
         name: "Task ",
         timestamp: .now,
-        level: 2)
+        level: -1)
     
     // MARK: - Initing CK Stuff
     
@@ -34,8 +36,6 @@ class AddTaskSheetViewModel: ObservableObject {
         
         PersistenceController.shared.saveContext()
     }
-
-    private var cancellableSet: Set<AnyCancellable> = []
 
     
 }

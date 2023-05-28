@@ -16,8 +16,8 @@ struct taskButtonStyle: ButtonStyle {
             .padding(.all)
             .background(levelColor == selectedLevel.color ? levelColor : levelColor.opacity(0.5))
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            .scaledToFill()
-            .frame(maxWidth: UIScreen.main.bounds.width / 4)
+//            .scaledToFit()
+//            .frame(maxWidth: UIScreen.main.bounds.width / 4)
             .foregroundColor(.white)
     }
 }

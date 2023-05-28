@@ -10,17 +10,29 @@ import SwiftUI
 
 enum taskImportanceLevels: Int, CaseIterable {
     
-    case Simple = 0
+    case Unselected = -1
+    case Simple
     case Medium
     case Hard
     case Complex
     
     var color: Color {
         switch self {
-        case .Simple: return Color.green
-        case .Medium: return Color.yellow
-        case .Hard: return Color.orange
-        case .Complex: return Color.red
+        case .Unselected:   return Color.gray
+        case .Simple:       return Color.green
+        case .Medium:       return Color.yellow
+        case .Hard:         return Color.orange
+        case .Complex:      return Color.red
+        }
+    }
+    
+    var emoji: String {
+        switch self {
+        case .Unselected:   return Color.gray
+        case .Simple:       return Color.green
+        case .Medium:       return Color.yellow
+        case .Hard:         return Color.orange
+        case .Complex:      return Color.red
         }
     }
 }
