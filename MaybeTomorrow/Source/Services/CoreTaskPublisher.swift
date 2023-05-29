@@ -9,7 +9,7 @@ import Combine
 import CoreData
 import Foundation
 
-class CDPublisher<CoreTask>: NSObject, NSFetchedResultsControllerDelegate, Publisher where CoreTask: NSManagedObject {
+class CoreTaskPublisher<CoreTask>: NSObject, NSFetchedResultsControllerDelegate, Publisher where CoreTask: NSManagedObject {
     typealias Output = [CoreTask]
     typealias Failure = Error
 
@@ -28,7 +28,7 @@ class CDPublisher<CoreTask>: NSObject, NSFetchedResultsControllerDelegate, Publi
     }
 
     func receive<S>(subscriber: S)
-        where S: Subscriber, CDPublisher.Failure == S.Failure, CDPublisher.Output == S.Input {
+        where S: Subscriber, CoreTaskPublisher.Failure == S.Failure, CoreTaskPublisher.Output == S.Input {
         var start = false
             
         objc_sync_enter(self)
@@ -50,7 +50,7 @@ class CDPublisher<CoreTask>: NSObject, NSFetchedResultsControllerDelegate, Publi
             }
             resultController = controller as? NSFetchedResultsController<NSManagedObject>
         }
-        CDSubscription(fetchPublisher: self, subscriber: AnySubscriber(subscriber))
+        CoreTaskSubscription(fetchPublisher: self, subscriber: AnySubscriber(subscriber))
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -70,12 +70,12 @@ class CDPublisher<CoreTask>: NSObject, NSFetchedResultsControllerDelegate, Publi
         }
     }
 
-    private class CDSubscription: Subscription {
-        private var fetchPublisher: CDPublisher?
+    private class CoreTaskSubscription: Subscription {
+        private var fetchPublisher: CoreTaskPublisher?
         private var cancellable: AnyCancellable?
 
         @discardableResult
-        init(fetchPublisher: CDPublisher, subscriber: AnySubscriber<Output, Failure>) {
+        init(fetchPublisher: CoreTaskPublisher, subscriber: AnySubscriber<Output, Failure>) {
             self.fetchPublisher = fetchPublisher
 
             subscriber.receive(subscription: self)

@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
-import CoreData
 
 struct DraftTask: Identifiable {
 
@@ -29,22 +27,4 @@ struct DraftTask: Identifiable {
 //    }
 }
 
-extension CoreTask {
-    
-    @nonobjc public class func fetchAllTasks() -> NSFetchRequest<CoreTask> {
-        let name = "\(Self.self)"
-        print("Running fetch request \(name) for all")
-        let request = NSFetchRequest<CoreTask>(entityName: name)
-        request.sortDescriptors = []
-        return request
-    }
-    
-    func archive() {
-        self.isArchived = true
-    }
-    
-    func done() {
-        self.isDone = true
-    }
-    
-}
+

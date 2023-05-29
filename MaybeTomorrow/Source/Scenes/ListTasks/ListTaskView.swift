@@ -10,14 +10,17 @@ import SwiftUI
 
 struct ListTaskView: View {
     
-    @EnvironmentObject var viewModel: listTaskViewModel
+    init(_ root: rootModel) {
+        self.viewModel = ListTaskViewModel(root)
+    }
     
-    @State private var showSheet = false
+    @ObservedObject private var viewModel: ListTaskViewModel
+    
     @State private var sheetHeight: CGFloat = .zero
     
     var body: some View {
         List {
-            ForEach(viewModel.allTasks) { task in
+            ForEach(viewModel.rm.allTasks.filter { $0.isArchived == false && $0.isDone == false } ) { task in
                 NavigationLink {
                     
                 } label: {
@@ -28,15 +31,28 @@ struct ListTaskView: View {
                 ) {
                     Button (role: .destructive) {
                         withAnimation {
-                            viewModel.deleteFromID(taskId: task.internalid!)
+                            viewModel.concludeTaskAndArchive(task)
                         }
                     } label: {
-                        Text("")
+                        Label("Conclude", systemImage: "checkmark.fill")
                     }
+                    .tint(.green)
+
+                }
+                .swipeActions(edge: .trailing,
+                              allowsFullSwipe: false
+                ) {
+                    Button (role: .destructive) {
+                        withAnimation {
+                            viewModel.archiveTask(task)
+                        }
+                    } label: {
+                        Label("Archive", systemImage: "archivebox.fill")
+                    }
+                    .tint(.brown)
 
                 }
             }
-//            .onDelete(perform: viewModel.deleteItems)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -51,10 +67,10 @@ struct ListTaskView: View {
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle("Tasks")
         .sheet(isPresented: $viewModel.showingSheet) {
-            AddTaskSheet(taskCount: viewModel.allTasks.count)
+            AddTaskSheet(taskCount: viewModel.rm.allTasks.count)
                 .onDisappear() {
                     withAnimation {
-                        viewModel.reloadData()
+                        viewModel.rm.loadData()
                     }
                 }
                 .overlay {
@@ -77,8 +93,8 @@ struct InnerHeightPreferenceKey: PreferenceKey {
     }
 }
 
-struct ListTaskView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListTaskView()
-    }
-}
+//struct ListTaskView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ListTaskView(rm)
+//    }
+//}

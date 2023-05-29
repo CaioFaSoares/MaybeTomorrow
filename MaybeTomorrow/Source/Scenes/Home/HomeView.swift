@@ -9,10 +9,16 @@ import SwiftUI
 
 struct HomeView: View {
     
+    init(_ root: rootModel) {
+        self.viewModel = HomeViewModel(root)
+    }
+    
+    @ObservedObject private var viewModel: HomeViewModel
+    
     @State var username = "functionality underway"
     
     var body: some View {
-        Section {
+        Section {   /// Profile for customization
             ZStack {
                 Circle()
                     .foregroundColor(Color(uiColor: .tertiarySystemBackground))
@@ -40,26 +46,19 @@ struct HomeView: View {
         .navigationTitle("Profile")
         .navigationBarTitleDisplayMode(.large)
         .listSectionSeparator(.visible)
-        Section {
+        Section {   /// stat section!
             Text("Oi")
         }
         .listSectionSeparator(.visible)
         Spacer()
             .frame(idealHeight: 0)
-        Section {
-            Button {
-                
-            } label: {
-                Text("Add Task!")
+        Section {   /// Giant button for the player to click on and add a task.
+            Group {
+                Color.accentColor
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-
+            .padding(.all)
         }
         .listSectionSeparator(.visible)
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
     }
 }

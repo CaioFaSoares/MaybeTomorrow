@@ -12,34 +12,45 @@ struct MaybeTomorrowApp: App {
     
     //    let persistenceController = PersistenceController.shared
     
-    @StateObject private var model: listTaskViewModel
+    @StateObject private var model: rootModel
     
-    init(listViewModel: listTaskViewModel) {
-        _model = StateObject(wrappedValue: listViewModel)
+    init(rootModel: rootModel) {
+        _model = StateObject(wrappedValue: rootModel)
     }
     
     init() {
-        _model = StateObject(wrappedValue: listTaskViewModel())
+        _model = StateObject(wrappedValue: rootModel())
     }
     
     var body: some Scene {
         WindowGroup {
             TabView {
                 NavigationStack {
-                    HomeView()
-//                        .environment(\.managedObjectContext, model.managedObjectContext)
-//                        .environmentObject(model)
+                    HomeView(model)
                 }.tabItem {
                     Image(systemName: "book.closed.fill")
                     Text("Home")
                 }
+                
                 NavigationStack {
-                    ListTaskView()
-                        .environment(\.managedObjectContext, model.managedObjectContext)
-                        .environmentObject(model)
+                    ListTaskView(model)
                 }.tabItem {
                     Image(systemName: "books.vertical")
-                    Text("List")
+                    Text("Tasks")
+                }
+                
+                NavigationStack {
+                    ArchiveView(model)
+                }.tabItem {
+                    Image(systemName: "archivebox.fill")
+                    Text("Archival")
+                }
+                
+                NavigationStack {
+                    ConfigView(model)
+                }.tabItem {
+                    Image(systemName: "gearshape.2.fill")
+                    Text("Config")
                 }
             }
         }

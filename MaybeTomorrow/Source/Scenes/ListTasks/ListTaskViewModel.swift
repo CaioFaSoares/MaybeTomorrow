@@ -6,71 +6,39 @@
 //
 
 import Foundation
-import Combine
-import SwiftUI
-import CoreData
-import CloudKit
 
-class listTaskViewModel: ObservableObject {
+import CoreData
+import Combine
+
+class ListTaskViewModel: ObservableObject {
     
-    init() {
-        self.loadData()
+    init(_ root: rootModel) {
+        self.rm = root
     }
     
     // MARK: - Functionality
     
+    public var rm: rootModel
+    
     private var cancellableSet: Set<AnyCancellable> = []
     
     @Published var showingSheet = false
-    @Published var allTasks = [CoreTask]()
     
     func raiseSheet() {
         showingSheet.toggle()
     }
     
-    // MARK: - Initing CK Stuff
-    
-    var managedObjectContext: NSManagedObjectContext {
-        PersistenceController.shared.container.viewContext
-    }
-    
     // MARK: - Core Data state mutations.
     
-    func deleteItems(offsets: IndexSet) {
-        offsets.map { allTasks[$0] }.forEach(managedObjectContext.delete)
-    }
-    
-    func deleteFromID(taskId: UUID) {
-        allTasks.filter { $0.internalid == taskId}.forEach(managedObjectContext.delete)
+    func archiveTask(_ task: CoreTask) {
+        task.toggleArchival()
         PersistenceController.shared.saveContext()
     }
     
-    // MARK: - Load and reload data in view
-    
-    func reloadData() {
-        CDPublisher(request: CoreTask.fetchAllTasks(), context: managedObjectContext)
-            .sink(
-                receiveCompletion: {
-                    print("Reloaded data")
-                    print($0)
-                },
-                receiveValue: { [weak self] tasks in
-                    self?.allTasks = tasks
-                })
-            .store(in: &cancellableSet)
-    }
-    
-    func loadData() {
-        CDPublisher(request: CoreTask.fetchAllTasks(), context: managedObjectContext)
-            .sink(
-                receiveCompletion: {
-                    print("Completion from fetchItemsAll")
-                    print($0)
-                },
-                receiveValue: { [weak self] tasks in
-                    self?.allTasks = tasks
-                })
-            .store(in: &cancellableSet)
+    func concludeTaskAndArchive(_ task: CoreTask) {
+        task.toggleDone()
+        task.toggleArchival()
+        PersistenceController.shared.saveContext()
     }
     
 }
