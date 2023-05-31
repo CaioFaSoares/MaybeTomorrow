@@ -77,11 +77,22 @@ struct ListTaskView: View {
                     GeometryReader { geometry in
                         Color.clear.preference(key: InnerHeightPreferenceKey.self, value: geometry.size.height)
                     }
-                }
-                .onPreferenceChange(InnerHeightPreferenceKey.self) { newHeight in
-                    sheetHeight = newHeight
-                }
-                .presentationDetents([.height(sheetHeight)])
+                    .overlay {
+                        GeometryReader { geometry in
+                            Color.clear.preference(key: InnerHeightPreferenceKey.self, value: geometry.size.height)
+                        }
+                    }
+                    .onPreferenceChange(InnerHeightPreferenceKey.self) { newHeight in
+                        sheetHeight = newHeight
+                    }
+                    .presentationDetents([.height(sheetHeight)])
+            }
+            .navigationBarTitleDisplayMode(.large)
+            .navigationTitle("Tasks")
+        }   .refreshable {
+            withAnimation {
+                viewModel.rm.reloadData()
+            }
         }
     }
 }

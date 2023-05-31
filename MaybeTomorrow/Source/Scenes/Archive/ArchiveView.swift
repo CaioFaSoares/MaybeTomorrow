@@ -28,12 +28,14 @@ struct ArchiveView: View {
                         }.frame(idealWidth: UIScreen.main.bounds.width / 2, idealHeight: UIScreen.main.bounds.width / 2)
                     }
                 }
-            }.toolbar {
-                ToolbarItem {
-                    Button {
-                        print("aha")
-                    } label: {
-                        Label("Filter", systemImage:  "line.3.horizontal.decrease.circle")
+                .toolbar {
+                    ToolbarItem {
+                        Button {
+                            print("[\(type(of: self))]: Aha!")
+                        } label: {
+                            Label("Filter", systemImage:  "line.3.horizontal.decrease.circle")
+                        }
+
                     }
 
                 }

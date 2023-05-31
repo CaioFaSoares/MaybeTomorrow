@@ -49,4 +49,9 @@ class rootModel: ObservableObject {
             .store(in: &cancellableSet)
     }
     
+    func reloadData() {
+        managedObjectContext.reset()
+        self.loadData()
+    }
+    
 }
