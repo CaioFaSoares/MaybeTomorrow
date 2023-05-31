@@ -8,25 +8,8 @@
 import CoreData
 
 struct PersistenceController {
+    
     static let shared = PersistenceController()
-
-    static var preview: PersistenceController = {
-        let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-        }
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        return result
-    }()
 
     let container: NSPersistentCloudKitContainer
 
@@ -52,5 +35,23 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+        
+    }
+    
+    func saveContext() {
+        if container.viewContext.hasChanges {
+            do {
+                print("Saving data")
+                try container.viewContext.save()
+            } catch {
+                /* This is straight out of Apple's default implementation. As such Apple advises to replace
+                 this implementation with code to handle the error appropriately.
+                 In particular fatalError() will causes the application to generate a crash log and terminate.
+                 And as such, you are advised not use this function in a shipping application, although it may be useful during development.
+                 */
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
 }
